@@ -794,8 +794,14 @@ func main() {
 	//----------------------------------------------------------------------------
 	r.GET("/get-submissions/:id", func(c *gin.Context) {
 		cookie := c.Request.Header.Get("Authorization")
-		_, err := GetAccountFromCookie(cookie)
+		cookieinfo, err := GetAccountFromCookie(cookie)
 		if err != nil {
+			c.JSON(RESPONSE_FAIL, gin.H{
+				"message": "error",
+			})
+			return
+		}
+		if (int(cookieinfo["role"].(float64)) & TEACHER_ROLE == 0) {
 			c.JSON(RESPONSE_FAIL, gin.H{
 				"message": "error",
 			})
