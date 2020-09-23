@@ -1,0 +1,14 @@
+<div class="card-body">
+        <h6>Messenger:</h6>
+        <ul *ngIf="chat" class="users">
+        <li *ngFor="let message of chat">
+            {{message.Senderid}}: <input [(ngModel)]="message.Message" placeholder="message">
+            <button class="delete" title="Delete message" (click)="deleteMessage(message)">Delete</button>
+            <button class="delete" title="Edit message" (click)="editMessage(message)">Edit</button>
+        </li>
+        </ul>
+        <label>Send a message:
+          <input [(ngModel)]="newmessage.Message" placeholder="newmessage"/>
+          <button (click)="sendMessage()">Send</button>
+        </label><br>
+</div>

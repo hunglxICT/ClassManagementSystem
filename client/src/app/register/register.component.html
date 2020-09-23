@@ -1,0 +1,23 @@
+<h2>Register new student</h2>
+  <div>
+    <label>Username:
+      <input [(ngModel)]="account.Username" placeholder="username"/>
+    </label><br>
+    <label>Password:
+      <input [(ngModel)]="account.Password" placeholder="password" type="password"/>
+    </label><br>
+    <label>First name:
+      <input [(ngModel)]="account.Firstname" placeholder="firstname"/>
+    </label><br>
+    <label>Last name:
+      <input [(ngModel)]="account.Lastname" placeholder="lastname"/>
+    </label><br>
+    <label>Email:
+      <input [(ngModel)]="account.Email" placeholder="email"/>
+    </label><br>
+    <label>Telephone number:
+      <input [(ngModel)]="account.Tel" placeholder="tel"/>
+    </label><br>
+  </div>
+  <button (click)="goBack()">Go Back</button>
+  <button (click)="save()">Register</button>

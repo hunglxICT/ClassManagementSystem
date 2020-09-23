@@ -1,0 +1,13 @@
+<div class="card-body">
+        <h6>List of classes:</h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="classes" class="classes">
+            <li *ngFor="let class of classes">
+            <a routerLink="/classdetail/{{class.Id}}">
+            <span class="badge">{{class.Id}}</span> {{class.Classname}}
+            </a>
+            <button class="delete" title="Delete class" (click)="delete(class)">x</button>
+            </li>
+        </ul>
+            
+</div>

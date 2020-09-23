@@ -1,0 +1,28 @@
+<div *ngIf="account">
+  <h2>{{account.Username | uppercase}} Details</h2>
+  <div><span>ID: </span>{{account.Id}}</div>
+  <div>
+    <label>Username:
+      <input [(ngModel)]="account.Username" placeholder="username"/>
+    </label><br>
+    <label>Password:
+      <input [(ngModel)]="account.Password" placeholder="password" type="password"/>
+    </label><br>
+    <label>First name:
+      <input [(ngModel)]="account.Firstname" placeholder="firstname"/>
+    </label><br>
+    <label>Last name:
+      <input [(ngModel)]="account.Lastname" placeholder="lastname"/>
+    </label><br>
+    <label>Email:
+      <input [(ngModel)]="account.Email" placeholder="email"/>
+    </label><br>
+    <label>Telephone number:
+      <input [(ngModel)]="account.Tel" placeholder="tel"/>
+    </label><br>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+  
+  <app-chat></app-chat>
+</div>

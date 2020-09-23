@@ -1,0 +1,34 @@
+<div *ngIf="exercise">
+  <h2>{{exercise.Title | uppercase}} Details</h2>
+  <div><span>ID: </span>{{exercise.Id}}</div>
+  <div><span>Title: </span>{{exercise.Title}}</div>
+  <div><span>Class ID: </span>{{exercise.Classid}}</div>
+  <div><span>Description: </span>{{exercise.Description}}</div>
+  <div><span>Attach file: </span><a href="{{exercise.Link}}">{{exercise.Link}}</a></div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="initsubmit()">submit</button>
+  
+  <div *ngIf="newsubmission">
+    <div><span>Description: </span>{{newsubmission.Description}}</div>
+    <div><span>Attach file: </span>
+      <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">      
+        <div>
+          <input type="file" name="profile" (change)="onFileSelect($event)" />
+        </div>
+      </form>
+      <br><br>
+
+        <button class="delete" title="Submit" (click)="saveSubmission(exercise, newsubmission)">Save submission</button>
+    </div>
+  </div>
+  
+  <h2>Submission for this class</h2>
+  <ul *ngIf="submissions">
+        <li *ngFor="let submit of submissions">
+            <a routerLink="/detail/{{submit.Studentid}}">
+            <span class="badge">Student ID: {{submit.Studentid}}</span>
+            </a> <a href="{{submit.Link}}">Link</a>
+        </li>
+        </ul>
+  
+</div>

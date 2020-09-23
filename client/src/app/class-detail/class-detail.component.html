@@ -1,0 +1,74 @@
+<div *ngIf="classs">
+  <h2>Class information</h2>
+  <div><span>Class name: </span>{{classs.Classname}}</div>
+  <div>
+    <label>Class name:
+      <input [(ngModel)]="classs.Classname" placeholder="classname"/>
+    </label><br>
+    
+    <div *ngIf="teacher">
+      <label>Teacher name: {{teacher.Firstname}} {{teacher.Lastname}}
+    </label><br>
+    </div>
+    
+    <ul *ngIf="students" class="users">
+      <h3>List of students on this class:</h3><br>
+        <li *ngFor="let user of students">
+            <a routerLink="/detail/{{user.Id}}">
+            <span class="badge">{{user.Id}}</span> {{user.Firstname}} {{user.Lastname}}
+            </a>
+            <button class="delete" title="Dismiss student" (click)="dismiss(classs, user)">x</button>
+        </li>
+    </ul>
+    
+    <ul *ngIf="exercises" class="users">
+      <label>List of exercises on this class:</label><br>
+        <li *ngFor="let exercise of exercises">
+            <a routerLink="/exercise/{{exercise.Id}}">
+            <span class="badge">{{exercise.Id}}</span> {{exercise.Title}}
+            </a>
+            <button class="delete" title="Delete exercise" (click)="deleteexercise()">+</button>
+        </li>
+    </ul>
+  </div>
+  
+  <button (click)="listtojoinclass()">Add student to class</button>
+    <ul *ngIf="users" class="users">
+        <button (click)="closelisttojoinclass()">Cancel</button><br>
+        <label>Add student to this class: </label>
+        <li *ngFor="let user of users">
+            <a routerLink="/detail/{{user.Id}}">
+            <span class="badge">{{user.Id}}</span> {{user.Firstname}} {{user.Lastname}}
+            </a>
+            <button class="delete" title="Join class" (click)="joinclass(classs, user)">+</button>
+        </li>
+    </ul>
+  <br>
+  
+  <button (click)="initaddexercise()">Add new exercises</button>
+    <ul *ngIf="newexercises">
+        <button (click)="closeaddexercise()">Cancel</button><br>
+        <h3>Add exercise to this class: </h3><br>
+        <label>Exercise title:
+            <input [(ngModel)]="newexercises.Title" placeholder="title"/>
+        </label><br>
+        <label>Exercise description:
+            <input [(ngModel)]="newexercises.Description" placeholder="description"/>
+        </label><br>
+        <label>Exercise file:</label>
+            <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">      
+      <div>
+        <input type="file" name="profile" (change)="onFileSelect($event)" />
+      </div>
+    </form>
+  
+  
+        <br><br>
+
+        <button class="delete" title="Save exercise" (click)="saveexercise(classs, newexercises)">Save exercise</button>
+    </ul>
+  <br>
+  
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div>

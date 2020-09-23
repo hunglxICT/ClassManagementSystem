@@ -1,0 +1,12 @@
+<div class="card-body">
+        <h6>List of users:</h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users" class="users">
+        <li *ngFor="let user of users">
+            <a routerLink="/detail/{{user.Id}}">
+            <span class="badge">{{user.Id}}</span> {{user.Firstname}} {{user.Lastname}}
+            </a>
+            <button class="delete" title="Delete user" (click)="delete(user)">x</button>
+        </li>
+        </ul>
+</div>
